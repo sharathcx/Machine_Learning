@@ -1,8 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-x_train = np.array([1, 2])
-y_train = np.array([300, 500])
+x_train = np.array([1, 2, 5, 7])
+y_train = np.array([300, 500, 1200, 1500])
 # Plot the data points
 plt.scatter(x_train, y_train, marker='x', c='b')
 # Set the title
@@ -13,7 +13,7 @@ plt.ylabel('Price (in 1000s of dollars)')
 plt.xlabel('Size (1000 sqft)')
 plt.show()
 
-w = 200
+w = 50
 b = 100
 
 
