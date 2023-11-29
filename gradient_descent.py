@@ -1,11 +1,9 @@
 import numpy as np
 from matplotlib import pyplot as plt
-import pandas as pd
-
 
 
 class GradientDecent:
-    def __init__(self, x_train, y_train):
+    def __init__(self, x_train=None, y_train=None):
         self.x_train = x_train
         self.y_train = y_train
 
@@ -42,9 +40,8 @@ class GradientDecent:
             b = tmp_b
         return w, b
 
-    def predict(self, w, b):
-        x = int(input("Enter sq: "))
-        print(w * x + b)
+    def predict(self, w, b, x):
+        return w * x + b
 
     def plotter(self, path=None):
         w, b = self.gradient_descent()
@@ -55,43 +52,3 @@ class GradientDecent:
         if path:
             plt.savefig("C:/Users/shara/OneDrive/Desktop/Machine Learning/plot")
         plt.show()
-
-
-# def fwb(x, y, w, b):
-#     m = x.shape[0]
-#     f_wb = np.zeros(m)
-#     for i in range(m):
-#         f_wb[i] = w * x[i] + b
-#     return f_wb
-
-
-# def plotter(x, y):
-#     w, b = gradient_descent(x, y)
-#     plt.plot(x_train, fwb(x, y, w, b), c='b', label='Our Prediction')
-#     plt.scatter(x_train, y_train, marker='x', c='r', label='Actual Values')
-#     plt.show()
-
-
-# plt.scatter(x_train, y_train, marker="x")
-# plt.xlabel("Size")
-# plt.ylabel("Price")
-# plt.show()
-
-
-# calculating cost
-# def cost(x, y, w, b):
-#     m = x.shape[0]
-#     cost = 0
-#     for i in range(m):
-#         f_wb = (w * x) + b
-#         cost += (f_wb - y[i]) ** 2
-#     total_cost = cost / (2 * m)
-#     return total_cost
-
-# path = "C:/Users/shara/OneDrive/Desktop/Machine Learning/cleanedHouseData.xlsx"
-# read_df = pd.read_excel(path)
-# x = read_df.iloc[:, 0].values
-# y = read_df.iloc[:, 5].values
-# ob1 = GradientDecent(x, y)
-# w, b = ob1.gradient_descent()
-# ob1.predict(w, b)
