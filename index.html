@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Upload</title>
+    <style>
+      body {
+        background-color: darkcyan;
+      }
+      #container {
+        display: grid;
+        gap: 10px;
+      }
+      #file-input {
+        width: fit-content;
+        background-color: beige;
+        border-radius: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="file-input">
+        <input type="file" id="fileInput" />
+      </div>
+      <div id="upload-button">
+        <button onclick="uploadFile(), show_data()">Upload File</button>
+      </div>
+      <div id="show-button">
+        <button onclick="show_data()">Show</button>
+      </div>
+      <div id="image">
+        <img src="" alt="" srcset="" id="fileImage" />
+      </div>
+    </div>
+
+    <script>
+      async function uploadFile() {
+        const fileInput = document.getElementById("fileInput");
+        const file = fileInput.files[0];
+
+        if (file) {
+          const formData = new FormData();
+          formData.append("file", file);
+
+          fetch("http://127.0.0.1:8000/upload/", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log("File uploaded successfully:", data);
+            })
+            .catch((error) => {
+              console.error("Error uploading file:", error);
+            });
+        } else {
+          console.error("No file selected.");
+        }
+      }
+      async function show_data() {
+        window.alert("working");
+        fetch("http://localhost:8000/get_file")
+          .then((response) => response.blob())
+          .then((blob) => {
+            const url = URL.createObjectURL(blob);
+            document.getElementById("fileImage").src = url;
+          })
+          .catch((error) => {
+            console.error("Error fetching file:", error);
+          });
+      }
+    </script>
+  </body>
+</html>
