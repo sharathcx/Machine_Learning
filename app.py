@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from gradient_descent import GradientDecent
 import numpy as np
 from fastapi.responses import FileResponse
+import uvicorn
 
 app = FastAPI()
 
@@ -42,4 +43,8 @@ async def predict(x: float):
     w, b, = obj1.gradient_descent()
     print(obj1.x_train)
     return obj1.predict(w, b, x)
+
+if __name__ == '__main__':
+    uvicorn.run(app, port=8000)
+
 
