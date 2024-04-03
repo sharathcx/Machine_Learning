@@ -40,4 +40,4 @@ w, b = grad_descent(0.1)
 fw_b = fwb(w, b)
 plt.plot(x_train, fw_b)
 plt.scatter(x_train, y_train)
-plt.show()
+plt.show() #showing the plot
