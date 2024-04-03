@@ -52,3 +52,10 @@ class GradientDecent:
         if path:
             plt.savefig("C:/Users/shara/OneDrive/Desktop/Machine Learning/plot")
         plt.show()
+
+
+x_train = np.array([1, 2, 3, 4])
+y_train = np.array([1, 2, 3, 4])
+grad = GradientDecent(x_train, y_train)
+print(grad.calculate_grad(1, 1))
+print(grad.gradient_descent())
